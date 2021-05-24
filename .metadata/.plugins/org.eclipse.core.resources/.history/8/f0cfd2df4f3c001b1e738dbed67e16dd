@@ -1,0 +1,52 @@
+package com.alka.springboot.topic;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.data.web.SpringDataWebProperties.Pageable;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Service;
+
+@Service
+public class TopicService {
+	
+	@Autowired(required=true)
+	TopicRepository topicRepo;
+
+	public List<Topic> getTopics() {
+		List<Topic> topics=new ArrayList<>();
+		for(Topic itr:topicRepo.findAll()) {
+			topics.add(itr);
+		}
+		return topics;
+	}
+
+	public Optional<Topic> getTopicsById(String id) {
+		return topicRepo.findById(id);
+	}
+
+	public Topic createTopic(Topic topic) {
+		
+		return topicRepo.save(topic);
+	}
+
+	public Topic updateTopic(String id, Topic topic) {
+		return topicRepo.save(topic);
+	}
+
+	public void deleteTopic(String id) {
+		topicRepo.deleteById(id);
+		
+	}
+	
+	
+	public List<Topic> getTopicsPaging(int page,int size) {
+		Pageable page1=PageRequest.of(page, size);
+		topicRepo.fin
+		
+	}
+
+}
